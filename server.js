@@ -17,6 +17,7 @@ const reportController = require('./controllers/report.route.js');
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 const User = require('./models/user.js');
+require('dotenv').config();
 
 // =======================
 // 2. MIDDLEWARE
