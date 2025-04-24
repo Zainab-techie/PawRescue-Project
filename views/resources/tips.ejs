@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tips</title>
+  <link rel="stylesheet" href="/styles/resources/tips.css">
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+
+  <div class="front-image">
+    <img src="/images/animal-top.png" style="width: 100%; height: auto;">
+  </div>
+  <hr class="divider">
+  <hr class="divider1">
+  <p class="strayAnimals">STRAY ANIMALS</p>
+  <div class="bottom-sentence">
+    <p class="sentence">AND WHAT YOU NEED TO LEARN</p>
+  </div>
+
+  <div class="stray-stamps">
+    <img src="/images/left-stamps.png" class="paw-stamp-left">
+    <img src="/images/right-stamps.png" class="paw-stamp-right">
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input type="text" id="AnimalSearchBar" oninput="filterAnimals()" placeholder="Cat...Dog...Bird..." />
+
+    <div class="search-icon">
+      <img src="/images/Search-icon.png" class="search">
+    </div>
+  </div>
+
+  <!-- Content Row -->
+  <div class="content-row">
+    <div class="box" id="dogBox">
+      <img src="/images/dog-art.png" id="dog"/>
+      <hr class="divider3">
+      <div class="box-content">
+        <p><b class="box-font">How to safely<br> help a stray Dog</b></p>
+        <p class="box-p">To help a stray dog... (shortened)</p>
+        <div class="tap-link">
+          <a href="https://azhartt.org/strayhelp/">MORE <img src="/images/arrow.jpg" class="arrow-down"> </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" id="catBox">
+      <img src="/images/cat-art.png" id="cat"/>
+      <hr class="divider3">
+      <div class="box-content">
+        <p><b class="box-font">How to safely<br> help a stray Cat</b></p>
+        <p class="box-p">To help a stray cat... (shortened)</p>
+        <div class="tap-link">
+          <a href="https://www.humaneworld.org/en/resources/how-safely-help-stray-pet"> MORE <img src="/images/arrow.jpg" class="arrow-down"> </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-row" style="margin-bottom: 100px;">
+    <div class="box" id="birdBox">
+      <img src="/images/bird1-art.png" id="bird"/>
+      <hr class="divider3">
+      <div class="box-content">
+        <p><b class="box-font">How to safely<br> help a stray Bird</b></p>
+        <p class="box-p">To help a stray bird... (shortened)</p>
+        <div class="tap-link">
+          <a href="https://www.four-paws.org/campaigns-topics/topics/help-for-stray-animals"> MORE <img src="/images/arrow.jpg" class="arrow-down"> </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" id="rabbitBox">
+      <img src="/images/rrr.jpg" id="rabbit"/>
+      <hr class="divider3">
+      <div class="box-content">
+        <p><b class="box-font">What to do<br> if you find a stray Rabbit</b></p>
+        <p class="box-p">To help a stray rabbit... (shortened)</p>
+        <div class="tap-link">
+          <a href="https://bestfriends.org/pet-care-resources/how-care-stray-or-lost-pet"> MORE <img src="/images/arrow.jpg" class="arrow-down"> </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/_footer.ejs') %>
+
+  <script>
+    function filterAnimals() {
+      const input = document.getElementById("AnimalSearchBar").value.toLowerCase();
+      const animals = {
+        dog: document.getElementById("dogBox"),
+        cat: document.getElementById("catBox"),
+        bird: document.getElementById("birdBox"),
+        rabbit: document.getElementById("rabbitBox")
+      };
+  
+      let matched = false;
+      for (let key in animals) {
+        if (input && key.includes(input)) {
+          animals[key].style.display = "block";
+          matched = true;
+        } else {
+          animals[key].style.display = input ? "none" : "block";
+        }
+      }
+  
+      if (!input) {
+        for (let key in animals) {
+          animals[key].style.display = "block";
+        }
+      }
+    }
+  
+    window.onload = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get('q');
+      if (query) {
+        const input = document.getElementById("AnimalSearchBar");
+        input.value = query;
+        filterAnimals();
+      }
+    };
+  </script>
+  
+  
+</body>
+</html>
